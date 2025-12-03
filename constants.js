@@ -234,6 +234,53 @@ export const VALIDATION = {
     macros: { min: 0, max: 500 } // grams
 };
 
+// Food database with nutritional information per unit
+export const FOOD_DATABASE = {
+  'idly': { calories: 38, protein: 1.5, carbs: 8, fats: 0.2 },
+  'dosa': { calories: 133, protein: 2, carbs: 20, fats: 5 },
+  'rice': { calories: 130, protein: 2.7, carbs: 28, fats: 0.3 },
+  'dal': { calories: 45, protein: 3, carbs: 8, fats: 0.3 },
+  'chicken': { calories: 165, protein: 31, carbs: 0, fats: 3.6 },
+  'paneer': { calories: 265, protein: 28, carbs: 3, fats: 17 },
+  'egg': { calories: 70, protein: 6, carbs: 0.4, fats: 5 },
+  'milk': { calories: 61, protein: 3.2, carbs: 4.8, fats: 3.3 },
+  'banana': { calories: 89, protein: 1.1, carbs: 23, fats: 0.3 },
+  'apple': { calories: 52, protein: 0.3, carbs: 14, fats: 0.2 },
+  'fish': { calories: 100, protein: 20, carbs: 0, fats: 1 },
+  'bread': { calories: 79, protein: 2.7, carbs: 14, fats: 1 },
+  'roti': { calories: 104, protein: 3.2, carbs: 20, fats: 1 }
+};
+
+// Function to search and calculate food nutrition
+export function searchFoodNutrition(foodInput) {
+  const input = foodInput.toLowerCase().trim();
+  let match = null;
+  let quantity = 1;
+  
+  // Try to extract quantity and food name (e.g., '2 idly')
+  const parts = input.split(' ');
+  if (parts.length > 1 && !isNaN(parts[0])) {
+    quantity = parseFloat(parts[0]);
+    const foodName = parts.slice(1).join(' ').toLowerCase();
+    match = Object.keys(FOOD_DATABASE).find(key => key.includes(foodName) || foodName.includes(key));
+  } else {
+    match = Object.keys(FOOD_DATABASE).find(key => key.includes(input) || input.includes(key));
+  }
+  
+  if (match) {
+    const food = FOOD_DATABASE[match];
+    return {
+      foodName: match,
+      quantity: quantity,
+      calories: Math.round(food.calories * quantity * 10) / 10,
+      protein: Math.round(food.protein * quantity * 10) / 10,
+      carbs: Math.round(food.carbs * quantity * 10) / 10,
+      fats: Math.round(food.fats * quantity * 10) / 10
+    };
+  }
+  return null;
+}
+
 // Error messages
 export const ERROR_MESSAGES = {
     required: 'This field is required',
@@ -245,3 +292,4 @@ export const ERROR_MESSAGES = {
     invalidNumber: 'Please enter a valid number',
     negativeValue: 'Value cannot be negative'
 };
+
