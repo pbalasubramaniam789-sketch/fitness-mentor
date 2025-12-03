@@ -1,8 +1,8 @@
 // Fitness Mentor - Meals Component
 
-import { loadProfile, addMeal, getMealsByDate, deleteMeal, getTotalCalories } from '../utils/storage.js';
-import { getTimeString } from '../utils/calculations.js';
-import { MEAL_TYPES, FOOD_SUGGESTIONS, VALIDATION, ERROR_MESSAGES } from '../utils/constants.js';
+import { loadProfile, addMeal, getMealsByDate, deleteMeal, getTotalCalories } from './storage.js';
+import { getTimeString } from './calculations.js';
+import { MEAL_TYPES, FOOD_SUGGESTIONS, VALIDATION, ERROR_MESSAGES } from './constants.js';
 
 /**
  * Render meals page
@@ -275,3 +275,4 @@ window.handleDeleteMeal = function (mealId) {
         renderMeals();
     }
 };
+
