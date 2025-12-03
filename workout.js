@@ -1,8 +1,8 @@
 // Fitness Mentor - Workout Component
 
-import { loadProfile, addWorkout, getWorkoutsByDate, deleteWorkout, getTotalWorkoutMinutes, getTotalCaloriesBurned } from '../utils/storage.js';
-import { calculateCaloriesBurned, getTimeString, getFitnessLevel } from '../utils/calculations.js';
-import { WORKOUT_TYPES, WORKOUT_SUGGESTIONS } from '../utils/constants.js';
+import { loadProfile, addWorkout, getWorkoutsByDate, deleteWorkout, getTotalWorkoutMinutes, getTotalCaloriesBurned } from './storage.js';
+import { calculateCaloriesBurned, getTimeString, getFitnessLevel } from './calculations.js';
+import { WORKOUT_TYPES, WORKOUT_SUGGESTIONS } from './constants.js';
 
 /**
  * Render workout page
@@ -358,3 +358,4 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
