@@ -1,8 +1,8 @@
 // Fitness Mentor - Onboarding Component
 
-import { VALIDATION, ERROR_MESSAGES } from '../utils/constants.js';
-import { calculateBMI, calculateDailyCalories } from '../utils/calculations.js';
-import { saveProfile, hasProfile } from '../utils/storage.js';
+import { VALIDATION, ERROR_MESSAGES } from './constants.js';
+import { calculateBMI, calculateDailyCalories } from './calculations.js';
+import { saveProfile, hasProfile } from './storage.js';
 
 /**
  * Initialize onboarding
@@ -209,3 +209,4 @@ function showWelcomeMessage(profile, bmiData, dailyCalories) {
     </div>
   `;
 }
+
