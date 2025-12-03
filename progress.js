@@ -1,8 +1,8 @@
 // Fitness Mentor - Progress Component
 
-import { loadProfile, getAllProgress, addProgressEntry, deleteProgressEntry, getAverageCalories, getAverageWorkoutMinutes, getLatestWeight, getStartingWeight } from '../utils/storage.js';
-import { generateProgressInsights } from '../utils/mentor.js';
-import { getDateString } from '../utils/calculations.js';
+import { loadProfile, getAllProgress, addProgressEntry, deleteProgressEntry, getAverageCalories, getAverageWorkoutMinutes, getLatestWeight, getStartingWeight } from './storage.js';
+import { generateProgressInsights } from './mentor.js';
+import { getDateString } from './calculations.js';
 
 /**
  * Render progress page
@@ -421,3 +421,4 @@ function drawWeightChart(data) {
         }
     });
 }
+
