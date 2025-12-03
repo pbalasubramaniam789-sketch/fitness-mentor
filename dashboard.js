@@ -1,9 +1,9 @@
 // Fitness Mentor - Dashboard Component
 
-import { loadProfile, getTotalCalories, getTotalWorkoutMinutes, getTotalCaloriesBurned } from '../utils/storage.js';
-import { calculateBMI, getFriendlyDate, calculateProgress } from '../utils/calculations.js';
-import { generateDailyFeedback, getMotivationalMessage } from '../utils/mentor.js';
-import { GOALS } from '../utils/constants.js';
+import { loadProfile, getTotalCalories, getTotalWorkoutMinutes, getTotalCaloriesBurned } from './storage.js';
+import { calculateBMI, getFriendlyDate, calculateProgress } from './calculations.js';
+import { generateDailyFeedback, getMotivationalMessage } from './mentor.js';
+import { GOALS } from './constants.js';
 
 /**
  * Render dashboard page
@@ -186,3 +186,4 @@ export function renderDashboard() {
     </div>
   `;
 }
+
