@@ -2,8 +2,7 @@
 
 import { loadProfile, addMeal, getMealsByDate, deleteMeal, getTotalCalories } from './storage.js';
 import { getTimeString } from './calculations.js';
-import { MEAL_TYPES, FOOD_SUGGESTIONS, VALIDATION, ERROR_MESSAGES } from './constants.js';
-
+import { MEAL_TYPES, FOOD_SUGGESTIONS, VALIDATION, ERROR_MESSAGES, FOOD_DATABASE, searchFoodNutrition } from './constants.js';
 /**
  * Render meals page
  */
@@ -218,6 +217,20 @@ export function renderMeals() {
 function setupMealForm() {
     const form = document.getElementById('add-meal-form');
     form.addEventListener('submit', handleAddMeal);
+    
+    // Add event listener for food name input to auto-populate nutrition
+    const foodInput = document.getElementById('meal-food');
+    if (foodInput) {
+      foodInput.addEventListener('change', function() {
+        const result = searchFoodNutrition(this.value);
+        if (result) {
+          document.getElementById('meal-calories').value = result.calories;
+          document.getElementById('meal-protein').value = result.protein;
+          document.getElementById('meal-carbs').value = result.carbs;
+          document.getElementById('meal-fats').value = result.fats;
+        }
+      });
+    }
 }
 
 /**
@@ -275,4 +288,5 @@ window.handleDeleteMeal = function (mealId) {
         renderMeals();
     }
 };
+
 
