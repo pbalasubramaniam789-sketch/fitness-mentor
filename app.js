@@ -1,12 +1,12 @@
 // Fitness Mentor - Main Application
 
-import { initStorage, hasProfile } from './utils/storage.js';
-import { initOnboarding } from './components/onboarding.js';
-import { renderDashboard } from './components/dashboard.js';
-import { renderMeals } from './components/meals.js';
-import { renderWorkout } from './components/workout.js';
-import { renderProgress } from './components/progress.js';
-import { renderSettings } from './components/settings.js';
+import { initStorage, hasProfile } from './storage.js';
+import { initOnboarding } from './onboarding.js';
+import { renderDashboard } from './dashboard.js';
+import { renderMeals } from './meals.js';
+import { renderWorkout } from './workout.js';
+import { renderProgress } from './progress.js';
+import { renderSettings } from './settings.js';
 
 /**
  * Current active page
@@ -301,3 +301,4 @@ window.FitnessMentor = {
     currentPage: () => currentPage,
     version: '1.0.0'
 };
+
