@@ -1,8 +1,8 @@
 // Fitness Mentor - Settings Component
 
-import { loadProfile, saveProfile, clearAllData, exportData } from '../utils/storage.js';
-import { calculateBMI, calculateDailyCalories } from '../utils/calculations.js';
-import { ACTIVITY_LEVELS, GOALS, VALIDATION, ERROR_MESSAGES } from '../utils/constants.js';
+import { loadProfile, saveProfile, clearAllData, exportData } from './storage.js';
+import { calculateBMI, calculateDailyCalories } from './calculations.js';
+import { ACTIVITY_LEVELS, GOALS, VALIDATION, ERROR_MESSAGES } from './constants.js';
 
 /**
  * Render settings page
@@ -364,3 +364,4 @@ window.handleClearData = function () {
         }
     }
 };
+
