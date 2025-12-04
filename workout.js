@@ -64,14 +64,36 @@ export function renderWorkout() {
  <div class="card-body">
  <form id="add-workout-form">
  <div class="form-group">
- <label class="form-label required">Workout Type</label>
- <select id="workout-type" class="form-select" required>
- <option value="">Select workout type</option>
- ${Object.entries(WORKOUT_TYPES).map(([key, data]) =>
- `<option value="${key}">${data.label}</option>`
- ).join('')}
- </select>
- </div>
+            <label class="form-label required">Exercise Category *</label>
+            <select id="exercise-category" class="form-select" required>
+              <option value="">Select category</option>
+              <option value="Strength Training">💪 Strength Training</option>
+              <option value="Cardio">🏃 Cardio</option>
+              <option value="Functional Training">⚙️ Functional Training</option>
+              <option value="Bodyweight">🤸 Bodyweight</option>
+              <option value="Flexibility/Mobility">🧘 Flexibility/Mobility</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="muscle-group-container" style="display: none;">
+            <label class="form-label required">Muscle Group *</label>
+            <select id="exercise-muscle-group" class="form-select">
+              <option value="">Select muscle group</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="cardio-intensity-container" style="display: none;">
+            <label class="form-label required">Intensity Level *</label>
+            <select id="cardio-intensity-level" class="form-select">
+              <option value="">Select intensity</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Exercise Name *</label>
+            <select id="exercise-name" class="form-select" required>
+              <option value="">Select exercise</option>
+            </select>
 
  <div class="form-group">
  <label class="form-label required">Duration (minutes)</label>
@@ -324,6 +346,7 @@ function setupWorkoutForm(profile) {
 
  // Form submission
  form.addEventListener('submit', handleAddWorkout);
+    setupCascadingExerciseDropdowns();
 }
 
 /**
@@ -435,6 +458,96 @@ style.textContent = `
  }
 `;
 document.head.appendChild(style);
+
+// Helper functions for cascading exercise dropdowns
+function setupCascadingExerciseDropdowns() {
+  const categorySelect = document.getElementById('exercise-category');
+  const muscleGroupContainer = document.getElementById('muscle-group-container');
+  const muscleGroupSelect = document.getElementById('exercise-muscle-group');
+  const cardioIntensityContainer = document.getElementById('cardio-intensity-container');
+  const cardioIntensitySelect = document.getElementById('cardio-intensity-level');
+  const exerciseNameSelect = document.getElementById('exercise-name');
+
+  categorySelect.addEventListener('change', function() {
+    const category = this.value;
+    muscleGroupContainer.style.display = 'none';
+    cardioIntensityContainer.style.display = 'none';
+    exerciseNameSelect.innerHTML = '<option value="">Select exercise</option>';
+    
+    if (category === 'Strength Training') {
+      muscleGroupContainer.style.display = 'block';
+      populateMuscleGroups();
+    } else if (category === 'Cardio') {
+      cardioIntensityContainer.style.display = 'block';
+      populateCardioIntensity();
+    } else if (category) {
+      updateExerciseDropdown();
+    }
+  });
+
+  muscleGroupSelect.addEventListener('change', updateExerciseDropdown);
+  cardioIntensitySelect.addEventListener('change', updateExerciseDropdown);
+}
+
+function populateMuscleGroups() {
+  const muscleGroupSelect = document.getElementById('exercise-muscle-group');
+  const exercises = EXERCISE_DATABASE['Strength Training'];
+  muscleGroupSelect.innerHTML = '<option value="">Select muscle group</option>';
+  Object.keys(exercises).forEach(muscle => {
+    const option = document.createElement('option');
+    option.value = muscle;
+    option.textContent = muscle;
+    muscleGroupSelect.appendChild(option);
+  });
+}
+
+function populateCardioIntensity() {
+  const cardioIntensitySelect = document.getElementById('cardio-intensity-level');
+  const exercises = EXERCISE_DATABASE['Cardio'];
+  cardioIntensitySelect.innerHTML = '<option value="">Select intensity</option>';
+  Object.keys(exercises).forEach(intensity => {
+    const option = document.createElement('option');
+    option.value = intensity;
+    option.textContent = intensity;
+    cardioIntensitySelect.appendChild(option);
+  });
+}
+
+function updateExerciseDropdown() {
+  const categorySelect = document.getElementById('exercise-category');
+  const muscleGroupSelect = document.getElementById('exercise-muscle-group');
+  const cardioIntensitySelect = document.getElementById('cardio-intensity-level');
+  const exerciseNameSelect = document.getElementById('exercise-name');
+  
+  const category = categorySelect.value;
+  exerciseNameSelect.innerHTML = '<option value="">Select exercise</option>';
+  
+  if (!category) return;
+  
+  let exercises = [];
+  
+  if (category === 'Strength Training') {
+    const muscle = muscleGroupSelect.value;
+    if (muscle && EXERCISE_DATABASE['Strength Training'][muscle]) {
+      exercises = EXERCISE_DATABASE['Strength Training'][muscle];
+    }
+  } else if (category === 'Cardio') {
+    const intensity = cardioIntensitySelect.value;
+    if (intensity && EXERCISE_DATABASE['Cardio'][intensity]) {
+      exercises = EXERCISE_DATABASE['Cardio'][intensity];
+    }
+  } else if (EXERCISE_DATABASE[category]) {
+    exercises = EXERCISE_DATABASE[category];
+  }
+  
+  exercises.forEach(exercise => {
+    const option = document.createElement('option');
+    option.value = exercise;
+    option.textContent = exercise;
+    exerciseNameSelect.appendChild(option);
+  });
+}
+
 
 
 
