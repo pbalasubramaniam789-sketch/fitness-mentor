@@ -3,6 +3,29 @@ import { loadProfile, addWorkout, getWorkoutsByDate, deleteWorkout, getTotalWork
 import { calculateCaloriesBurned, getTimeString, getFitnessLevel } from './calculations.js';
 import { WORKOUT_TYPES, WORKOUT_SUGGESTIONS } from './constants.js';
 
+// Exercise Database with all exercises organized by category and muscle group
+const EXERCISE_DATABASE = {
+  'Strength Training': {
+    'Chest': ['Barbell Bench Press', 'Dumbbell Bench Press', 'Incline Bench Press', 'Decline Bench Press', 'Chest Fly (Dumbbell)', 'Cable Fly', 'Machine Chest Press', 'Push-Ups', 'Weighted Push-Ups', 'Pec Deck Machine'],
+    'Back': ['Deadlift', 'Conventional Deadlift', 'Romanian Deadlift', 'Lat Pulldown', 'Pull-Ups', 'Chin-Ups', 'Bent Over Barbell Row', 'Dumbbell Row', 'T-Bar Row', 'Seated Cable Row', 'Hyperextensions'],
+    'Shoulders': ['Overhead Shoulder Press', 'Dumbbell Shoulder Press', 'Arnold Press', 'Lateral Raise', 'Front Raise', 'Rear Delt Fly', 'Face Pulls', 'Machine Shoulder Press', 'Shrugs'],
+    'Biceps': ['Barbell Curl', 'Dumbbell Curl', 'Hammer Curl', 'Concentration Curl', 'Preacher Curl', 'Cable Curl', 'EZ Bar Curl'],
+    'Triceps': ['Tricep Pushdown', 'Overhead Tricep Extension', 'Skull Crushers', 'Close Grip Bench Press', 'Dips', 'Tricep Kickback', 'Cable Rope Extension'],
+    'Legs': ['Barbell Squat', 'Front Squat', 'Leg Press', 'Lunges', 'Leg Extension', 'Hamstring Curl', 'Romanian Deadlift', 'Calf Raises', 'Hip Thrusts', 'Glute Bridge', 'Bulgarian Split Squat', 'Hack Squat'],
+    'Core': ['Crunches', 'Plank', 'Russian Twist', 'Leg Raise', 'Hanging Knee Raise', 'Cable Woodchoppers', 'Mountain Climbers', 'Bicycle Crunch', 'Side Plank'],
+    'Full Body': ['Clean and Press', 'Snatch', 'Kettlebell Swing', 'Burpees', 'Battle Rope Waves', 'Sled Push', 'Thrusters', 'Farmer\'s Walk']
+  },
+  'Cardio': {
+    'Low Intensity': ['Walking (Treadmill/Floor)', 'Light Cycling', 'Elliptical Trainer', 'Row Machine (Low Resistance)', 'Light Stair Climber', 'Slow Jogging'],
+    'Moderate Intensity': ['Jogging', 'Outdoor Running', 'Cycling', 'Stair Climber Moderate', 'Rowing Moderate', 'Cross Trainer Workout'],
+    'High Intensity HIIT': ['Sprint Intervals', 'Treadmill HIIT (30s/30s)', 'Bike Sprints', 'Jump Rope Intervals', 'Burpee HIIT', 'Tabata Training', 'Battle Rope HIIT']
+  },
+  'Functional Training': ['Kettlebell Deadlift', 'Kettlebell Clean and Press', 'Kettlebell Goblet Squat', 'TRX Row', 'TRX Push-Up', 'Battle Rope Slams', 'Medicine Ball Slams', 'Box Jumps', 'Sandbag Carry', 'Sled Push', 'Sled Pull', 'Farmer\'s Walk', 'Plyometric Jumps'],
+  'Bodyweight': ['Push-Ups', 'Incline Push-Ups', 'Decline Push-Ups', 'Bodyweight Squats', 'Lunges', 'Burpees', 'Plank', 'Pull-Ups', 'Dips', 'Mountain Climbers', 'Jump Squats', 'High Knees'],
+  'Flexibility/Mobility': ['Hamstring Stretch', 'Hip Flexor Stretch', 'Calf Stretch', 'Chest Opener Stretch', 'Shoulder Mobility Circles', 'Cat-Cow', 'Foam Rolling (Quads)', 'Foam Rolling (Hamstrings)', 'Foam Rolling (Calves)', 'Full Body Stretch Routine']
+};
+
+
 /**
  * Render workout page
  */
@@ -412,5 +435,6 @@ style.textContent = `
  }
 `;
 document.head.appendChild(style);
+
 
 
