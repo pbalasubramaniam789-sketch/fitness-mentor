@@ -294,4 +294,119 @@ function setupWorkoutForm(profile) {
  });
 
  durationInput.addEventListener('input', updateCaloriePreview);
- intensityInputs.forEach(input => input.addEventListener('change', update
+ intensityInputs.forEach(input => input.addEventListener('change', updateCaloriePreview));
+
+ // Form submission
+ form.addEventListener('submit', handleAddWorkout);
+}
+
+/**
+ * Handle add workout form submission
+ * @param {Event} e - Submit event
+ */
+function handleAddWorkout(e) {
+ e.preventDefault();
+ const profile = loadProfile();
+ const type = document.getElementById('workout-type').value;
+ const duration = parseInt(document.getElementById('workout-duration').value);
+ const intensity = document.querySelector('input[name="intensity"]:checked')?.value;
+ const selectedType = WORKOUT_TYPES[type]?.label;
+ const gymWorkoutTypes = ['Strength Training', 'HIIT'];
+ const sets = gymWorkoutTypes.includes(selectedType) ? parseInt(document.getElementById('workout-sets').value) : null;
+ const reps = gymWorkoutTypes.includes(selectedType) ? parseInt(document.getElementById('workout-reps').value) : null;
+
+ // Validate
+ if (!type || !duration || !intensity) {
+ alert('Please fill in all required fields');
+ return;
+ }
+
+ if (gymWorkoutTypes.includes(selectedType) && (!sets || !reps)) {
+ alert('Please fill in sets and reps');
+ return;
+ }
+
+ if (duration < 1 || duration > 300) {
+ alert('Duration must be between 1 and 300 minutes');
+ return;
+ }
+
+ // Calculate calories burned
+ const caloriesBurned = calculateCaloriesBurned(type, duration, intensity, profile.weight);
+
+ // Create workout object
+ const workout = {
+ type,
+ duration,
+ intensity,
+ caloriesBurned,
+ sets,
+ reps
+ };
+
+ // Add workout
+ addWorkout(workout);
+
+ // Reset form
+ e.target.reset();
+ document.getElementById('calories-preview').style.display = 'none';
+ document.getElementById('sets-group').style.display = 'none';
+ document.getElementById('reps-group').style.display = 'none';
+
+ // Re-render
+ renderWorkout();
+}
+
+/**
+ * Handle delete workout
+ * @param {string} workoutId - Workout ID
+ */
+window.handleDeleteWorkout = function (workoutId) {
+ if (confirm('Are you sure you want to delete this workout?')) {
+ deleteWorkout(workoutId);
+ renderWorkout();
+ }
+};
+
+// Add CSS for intensity radio buttons
+const style = document.createElement('style');
+style.textContent = `
+ .intensity-option {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: var(--spacing-md);
+ background: var(--bg-secondary);
+ border: 2px solid var(--border);
+ border-radius: var(--radius);
+ cursor: pointer;
+ transition: all var(--transition);
+ }
+ 
+ .intensity-option:hover {
+ border-color: var(--primary);
+ background: var(--bg-tertiary);
+ }
+ 
+ .intensity-option input {
+ display: none;
+ }
+ 
+ .intensity-option input:checked + .intensity-label {
+ color: var(--primary);
+ font-weight: 700;
+ }
+ 
+ .intensity-option:has(input:checked) {
+ border-color: var(--primary);
+ background: rgba(102, 126, 234, 0.1);
+ }
+ 
+ .intensity-label {
+ color: var(--text-secondary);
+ font-weight: 600;
+ font-size: var(--font-size-sm);
+ }
+`;
+document.head.appendChild(style);
+
