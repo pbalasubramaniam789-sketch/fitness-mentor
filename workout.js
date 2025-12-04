@@ -292,6 +292,9 @@ function setupWorkoutForm(profile) {
  }
  updateCaloriePreview();
  });
+ 
+ // Trigger change event immediately to show/hide sets and reps fields on load
+ typeSelect.dispatchEvent(new Event('change'));
 
  durationInput.addEventListener('input', updateCaloriePreview);
  intensityInputs.forEach(input => input.addEventListener('change', updateCaloriePreview));
@@ -409,4 +412,5 @@ style.textContent = `
  }
 `;
 document.head.appendChild(style);
+
 
