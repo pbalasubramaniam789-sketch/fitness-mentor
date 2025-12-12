@@ -3,6 +3,7 @@
 import { loadProfile, addWorkout, getWorkoutsByDate, deleteWorkout, getTotalWorkoutMinutes, getTotalCaloriesBurned } from './storage.js';
 import { calculateCaloriesBurned, getTimeString, getFitnessLevel, getDateString } from './calculations.js';
 import { WORKOUT_TYPES, WORKOUT_SUGGESTIONS, EXERCISE_DATABASE, EXERCISE_CATEGORIES, VALIDATION, ERROR_MESSAGES } from './constants.js';
+import { EXERCISES_DATABASE, getAllExercises, getExercisesByCategory } from './exercises.js';
 
 export function renderWorkout() {
     const profile = loadProfile();
@@ -152,3 +153,4 @@ window.deleteWorkoutEntry = function(workoutId, date) {
         renderWorkout();
     }
 };
+
