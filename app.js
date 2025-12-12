@@ -173,11 +173,13 @@ function showLoadingAnimation() {
     style.textContent = `
     .page {
       opacity: 0;
+       display: none;
       transition: opacity 0.3s ease;
     }
     
     .page.active {
       opacity: 1;
+       display: block;
     }
   `;
     document.head.appendChild(style);
@@ -301,4 +303,5 @@ window.FitnessMentor = {
     currentPage: () => currentPage,
     version: '1.0.0'
 };
+
 
