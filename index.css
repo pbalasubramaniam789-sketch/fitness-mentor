@@ -1714,3 +1714,228 @@ main.container {
   }
 }}
 
+/* ==================== PHASE 3: Meal & Food Page Improvements ==================== */
+
+/* Meals page layout - organized sections */
+#meals-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Add meal form in card */
+.meal-form-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.meal-form-card h2 {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+/* Quick preset chips for common meals */
+.meal-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.preset-chip {
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.preset-chip:hover {
+  background: rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Collapsible nutrition info panel */
+.nutrition-panel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.nutrition-header {
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+.nutrition-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nutrition-header h3 {
+  font-size: 1rem;
+  color: white;
+  margin: 0;
+  font-weight: 600;
+}
+
+.nutrition-toggle {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.nutrition-toggle.open {
+  transform: rotate(180deg);
+}
+
+.nutrition-content {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.nutrition-content.open {
+  max-height: 500px;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+}
+
+.nutrition-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.nutrition-content li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.nutrition-content li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* Meals list section */
+.meals-list-section {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.meals-list-section h3 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.meal-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid #667eea;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.meal-item:last-child {
+  margin-bottom: 0;
+}
+
+.meal-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: #764ba2;
+}
+
+.meal-info {
+  flex: 1;
+}
+
+.meal-name {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.meal-calories {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.meal-time {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 1rem;
+}
+
+/* Empty state for meals */
+.empty-meals-state {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-meals-state p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Mobile responsive for Phase 3 */
+@media (max-width: 768px) {
+  #meals-content {
+    gap: 1.5rem;
+  }
+  
+  .meal-presets {
+    gap: 0.6rem;
+  }
+  
+  .preset-chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .meal-form-card,
+  .nutrition-panel,
+  .meals-list-section {
+    padding: 1.2rem;
+  }
+}
+
+
