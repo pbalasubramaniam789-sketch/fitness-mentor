@@ -1935,7 +1935,202 @@ main.container {
   .nutrition-panel,
   .meals-list-section {
     padding: 1.2rem;
+
+      /* ==================== PHASE 4-6: Workout, Progress, Settings Pages ==================== */
+
+/* Workout page layout */
+#workout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.workout-form-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.workout-form-card h2 {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.today-summary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.summary-title {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.summary-stat-item {
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.summary-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.summary-stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.3rem;
+}
+
+/* Progress page layout */
+#progress-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.progress-stat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.progress-stat-card {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.progress-stat-card .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.progress-stat-card .stat-name {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.progress-chart-area {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-chart-area p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Settings page layout */
+#settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.settings-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.settings-card h3 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.health-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.health-metric-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.health-metric-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.3rem;
+}
+
+.health-metric-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .progress-stat-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .health-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .progress-chart-area {
+    min-height: 200px;
+  }
+  
+  #workout-content,
+  #progress-content,
+  #settings-content {
+    gap: 1.5rem;
   }
 }
+  }
+}
+
 
 
